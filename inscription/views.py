@@ -37,9 +37,9 @@ def inscription(request,template_name='inscri/inscription.html'):
     
     return render(request,template_name, context)
 
-# La fonction pour mise en jour de donnée et selection les information mise en jour 
+# La fonction pour mise à jour de donnée et selection les informations mise à jour 
 def update(request,id,template_name='inscri/inscription.html'):
-    # Partie Mise en jour
+    # Partie Mise à jour
     etudiant = Etudiant.objects.get(id=id)
     print("------------------------------Querette SQL Update ----------------------------------")
     print("Query", etudiant)
@@ -53,7 +53,7 @@ def update(request,id,template_name='inscri/inscription.html'):
         
         return redirect('inscription')
      
-    # Partie pour la selection des information
+    # Partie pour la selection des informations
     etudiant_all_update = Etudiant.objects.all()
     context= {}
     context['etudiants'] =   etudiant_all_update
