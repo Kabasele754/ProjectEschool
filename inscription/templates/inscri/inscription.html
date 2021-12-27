@@ -1,0 +1,73 @@
+{% extends 'inscri/base.html' %} {% load static %} {% block content %}
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h3>Formulaire d'inscription des eleves</h3>
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Nom" name="nom" value="{{etudiant_update.nom}}">
+                </div>
+                <div class=" mb-3 ">
+                    <input type="text " class="form-control " placeholder="Post-nom " name="postnom" value="{{etudiant_update.postnom}}">
+                </div>
+
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{etudiant_update.email}}">
+                </div>
+                <div class=" mb-3 ">
+                    <input type="tel " class="form-control " placeholder="Phone" name="phone" value="{{etudiant_update.phone}}">
+                </div>
+
+                <button type="submit" class="btn btn-success">Enregisrer</button>
+            </form>
+        </div>
+
+        <div class="col-8">
+            <h3>Liste des eleves</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Post-Nom</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+
+                    {% if etudiants %} {% for etudiant in etudiants %}
+
+
+                    <tr>
+                        <th scope="row">{{etudiant.id}}</th>
+                        <td>{{etudiant.nom}}</td>
+                        <td>{{etudiant.postnom}}</td>
+                        <td>{{etudiant.email}}</td>
+                        <td>{{etudiant.phone}}</td>
+
+                        <td>
+                            <a href="{%  url 'update' etudiant.id  %}"> <input type="submit" value="Edit" class="btn btn-warning btn-sm btn-edit"></a>
+                            <a href="{%  url 'delete' etudiant.id  %}"> <input type="button" value="Delete" class="btn btn-danger btn-sm btn-del"></a>
+                        </td>
+                    </tr>
+                    {% endfor %} {% else %}
+                    <tr>
+                        <h1>Aucun etudiant enregistrer</h1>
+                    </tr>
+                    {% endif %}
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
