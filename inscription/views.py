@@ -12,19 +12,8 @@ def index_view(request,template_name='inscri/index.html'):
 def connect_view(request,template_name='inscri/connexion.html'):
     return render(request,template_name)
 
-
-# Fomction pour Creer une formation et selection les information creer 
 def inscription(request,template_name='inscri/inscription.html'):
-    # Partie pour creer
-    if request.method == 'POST':
-        etudiant_create = Etudiant(
-            nom = request.POST['nom'],
-            postnom = request.POST['postnom'],
-            email = request.POST['email'],
-            phone = request.POST['phone'],
-            
-        ) 
-        etudiant_create.save()
+   
     # Partie selection 
     etudiant = Etudiant.objects.all()
     print("QuerySet",etudiant)
@@ -37,8 +26,24 @@ def inscription(request,template_name='inscri/inscription.html'):
     
     return render(request,template_name, context)
 
+
+# Fomction pour Creer une formation et selection les information creer 
+def add(request):
+    # Partie pour creer
+    if request.method == 'POST':
+        etudiant_create = Etudiant(
+            nom = request.POST['nom'],
+            postnom = request.POST['postnom'],
+            email = request.POST['email'],
+            phone = request.POST['phone'],
+            
+        ) 
+        etudiant_create.save()
+        return redirect('inscription')
+    
+
 # La fonction pour mise à jour de donnée et selection les informations mise à jour 
-def update(request,id,template_name='inscri/inscription.html'):
+def update(request,id,template_name='inscri/modal.html'):
     # Partie Mise à jour
     etudiant = Etudiant.objects.get(id=id)
     print("------------------------------Querette SQL Update ----------------------------------")

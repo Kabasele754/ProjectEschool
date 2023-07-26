@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Formulaire d'inscription des eleves</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/add/" method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Nom" name="nom" value="{{etudiant_update.nom}}">
+                </div>
+                <div class=" mb-3 ">
+                    <input type="text " class="form-control " placeholder="Post-nom " name="postnom" value="{{etudiant.postnom}}">
+                </div>
+
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{etudiant.email}}">
+                </div>
+                <div class=" mb-3 ">
+                    <input type="tel " class="form-control " placeholder="Phone" name="phone" value="{{etudiant.phone}}">
+                </div>
+
+                <button type="submit" class="btn btn-success float-end">Save</button>
+            </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
